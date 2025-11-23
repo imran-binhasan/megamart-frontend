@@ -1,30 +1,11 @@
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import "../globals.css";
+import { ReactNode } from "react";
 
-
-const montserrat = Montserrat({
-    variable: "--font-montserrat",
-    subsets: ["latin"],
-})
-
-export const metadata: Metadata = {
-  title: "MegaMart",
-  description: "Your one-stop online shop for everything!",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <main className="min-h-screen">
+      <header>This is header</header>
+      <section>{children}</section>
+      <footer>This is footer</footer>
+    </main>
   );
 }
