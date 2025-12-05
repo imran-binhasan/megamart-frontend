@@ -1,11 +1,12 @@
+import Banner from "@/components/homepage/banner";
 
 export const revalidate = 30;
 
-export default function HometPage() {
+export default function HomePage() {
     return (
         <div className="p-3 border border-yellow-500">
 
-            <div className="h-60 ">This is slide</div>
+           <Banner/>
             <div className="h-60 ">This is product</div>
         
         
