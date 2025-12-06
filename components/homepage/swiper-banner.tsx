@@ -1,35 +1,56 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import Image from "next/image";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Pagination, Navigation } from "swiper/modules";
-import Image from "next/image";
+interface BannerImage {
+  src: string;
+  alt: string;
+}
 
-export default function SwiperBanner({ images }) {
-  console.log(images);
+interface SwiperBannerProps {
+  images: BannerImage[];
+}
+
+export default function SwiperBanner({ images }: SwiperBannerProps) {
+  if (!images || images.length === 0) {
+    return null;
+  }
+
   return (
-    <>
-      <Swiper
-        className="rounded-xl"
-        slidesPerView={1}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
-      >
-        {images &&
-          images.map((img, i) => (
-            <SwiperSlide key={i}>
-              <div className="relative h-full ">
-                <Image src={img.src} alt={img.alt} fill />
-              </div>
-            </SwiperSlide>
-          ))}
-      </Swiper>
-    </>
+    <Swiper
+      className="h-full w-full rounded-lg md:rounded-xl"
+      slidesPerView={1}
+      loop={true}
+      autoplay={{
+        delay: 3500,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: true,
+      }}
+      modules={[Pagination, Autoplay]}
+    >
+      {images.map((img, index) => (
+        <SwiperSlide key={`banner-${index}`}>
+          <div className="relative w-full h-full">
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover"
+              priority={index === 0}
+              quality={90}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 50vw"
+            />
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }

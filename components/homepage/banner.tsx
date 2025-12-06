@@ -14,25 +14,28 @@ const defaultSideBanners = [
 
 export default function Banner() {
   return (
-    <div className=" h-[70vh] grid grid-cols-1 md:grid-cols-8 gap-3">
-      <div className="col-span-5 ">
+    <div className="h-[36vh] md:h-[75vh] grid grid-cols-1 md:grid-cols-8 md:gap-3">
+      {/* Main Banner Swiper */}
+      <div className="md:col-span-5 h-[23vh] md:h-full mb-1 md:mb-0">
         <SwiperBanner images={defaultMainBanners} />
       </div>
-      <div className=" col-span-3 flex flex-col justify-between items-center gap-2">
-        <div className="relative w-full h-1/2">
+
+      {/* Side Banners - Horizontal on mobile, Vertical on desktop */}
+      <div className="md:col-span-3 h-[13vh] md:h-full flex flex-row md:flex-col justify-between gap-1 md:gap-3">
+        <div className="relative w-full h-full">
           <Image
             src={defaultSideBanners[0].src}
             alt={defaultSideBanners[0].alt}
             fill
-            className="object-cover rounded-xl"
+            className="object-cover rounded-lg md:rounded-xl"
           />
         </div>
-        <div className="relative w-full h-1/2  ">
+        <div className="relative w-full h-full">
           <Image
             src={defaultSideBanners[1].src}
             alt={defaultSideBanners[1].alt}
             fill
-            className="object-cover rounded-xl"
+            className="object-cover rounded-lg md:rounded-xl"
           />
         </div>
       </div>
